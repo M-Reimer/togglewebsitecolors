@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Toggle Website Colors",
+  "version": "1.0.0",
+
+  "description": "__MSG_extensionDescription__",
+
+  "applications": {
+    "gecko": {
+      "id": "{d9d33933-40dc-4da1-8dc5-5b0449ce7d46}",
+      "strict_min_version": "53.0"
+    }
+  },
+
+  "homepage_url": "https://github.com/M-Reimer/togglewebsitecolors",
+  "author": "Manuel Reimer",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "contextMenus",
+    "<all_urls>"
+  ],
+
+  "default_locale": "en"
+}

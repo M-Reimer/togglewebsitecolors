@@ -1,0 +1,11 @@
+{
+  "extensionDescription": {
+    "message": "Fügt eine Checkbox zum Seiten-Kontextmenü hinzu, mit welcher die Webseiten-Farben ein- und ausgeschaltet werden können.",
+    "description": "Description of the extension."
+  },
+
+  "contextMenuWebsiteColors": {
+    "message": "Webseite-Farben",
+    "description": "Label of the context menu"
+  }
+}

@@ -1,0 +1,11 @@
+* {
+  color: black !important;
+  background: white !important;
+}
+a, a * {
+  color: blue !important;
+}
+
+img, p {
+  background: none !important;
+}

@@ -1,0 +1,11 @@
+{
+  "extensionDescription": {
+    "message": "Adds a checkbox to the page context menu to toggle colors, set by the website author.",
+    "description": "Description of the extension."
+  },
+
+  "contextMenuWebsiteColors": {
+    "message": "Website colors",
+    "description": "Label of the context menu"
+  }
+}
