@@ -19,11 +19,17 @@
     "scripts": ["background.js"]
   },
 
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
+
   "permissions": [
     "activeTab",
     "tabs",
     "contextMenus",
-    "<all_urls>"
+    "<all_urls>",
+    "storage"
   ],
 
   "default_locale": "en"

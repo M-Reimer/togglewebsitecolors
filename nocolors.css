@@ -1,9 +1,9 @@
 * {
-  color: black !important;
-  background: white !important;
+  color: $TEXTCOLOR !important;
+  background: $BACKGROUNDCOLOR !important;
 }
 a, a * {
-  color: blue !important;
+  color: $LINKCOLOR !important;
 }
 
 img, p {

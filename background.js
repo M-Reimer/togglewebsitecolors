@@ -24,21 +24,39 @@
 var gTabHasCSS = {};
 
 // Function to apply our CSS to the given tab.
-function InsertCSS(aID) {
-  browser.tabs.insertCSS(aID, {
+async function InsertCSS(aID) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", chrome.extension.getURL('/nocolors.css'), false);
+  xhr.send();
+  let css = xhr.responseText
+
+  const prefs = await browser.storage.local.get();
+  const background = prefs.background_color || "#FFFFFF";
+  const text = prefs.text_color || "#000000";
+  const link = prefs.link_color || "#0000EE";
+  const visited = prefs.link_color || "#551A8B";
+
+  css = css.replace(/\$TEXTCOLOR/g, text);
+  css = css.replace(/\$BACKGROUNDCOLOR/g, background);
+  css = css.replace(/\$LINKCOLOR/g, link);
+  css = css.replace(/\$VISITEDCOLOR/g, visited);
+
+  await browser.tabs.insertCSS(aID, {
     allFrames: true,
     cssOrigin: "user",
-    file: "/nocolors.css"
+    code: css
   });
-  gTabHasCSS[aID] = true;
+  gTabHasCSS[aID] = css;
 }
 
 // Function to remove our CSS from the given tab.
 function RemoveCSS(aID) {
+  if (!gTabHasCSS[aID])
+    return;
   browser.tabs.removeCSS(aID, {
     allFrames: true,
     cssOrigin: "user",
-    file: "/nocolors.css"
+    code: gTabHasCSS[aID]
   });
   gTabHasCSS[aID] = false;
 }
