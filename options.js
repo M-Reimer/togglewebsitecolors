@@ -8,6 +8,12 @@ async function ColorChanged(e) {
   }
 }
 
+async function CheckboxChanged(e) {
+  await browser.storage.local.set({
+    auto_disable: e.target.checked
+  });
+}
+
 function init() {
   /*
   document.querySelector("#imageformat_headline").textContent = browser.i18n.getMessage("imageformat_headline_label");
@@ -24,6 +30,7 @@ function init() {
   colorchoosers.forEach((chooser) => {
     chooser.addEventListener("change", ColorChanged);
   });
+  document.querySelector("#auto_disable_checkbox").addEventListener("change", CheckboxChanged);
 }
 
 function loadOptions() {
@@ -32,11 +39,14 @@ function loadOptions() {
     let text = result.text_color || "#000000";
     let link = result.link_color || "#0000EE";
     let visited = result.link_color || "#551A8B";
+    let autodisable = result.auto_disable || false;
 
     document.querySelector("#background_color_chooser").value = background;
     document.querySelector("#text_color_chooser").value = text;
     document.querySelector("#link_color_chooser").value = link;
     document.querySelector("#visited_color_chooser").value = visited;
+
+    document.querySelector("#auto_disable_checkbox").checked = autodisable;
   });
 }
 

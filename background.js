@@ -63,9 +63,15 @@ function RemoveCSS(aID) {
 
 // Returns true if the passed tab has our CSS aplied. False otherwise.
 function HasCSS(aID) {
-  if (gTabHasCSS[aID])
-    return true;
-  return false;
+  return (gTabHasCSS[aID]);
+}
+
+// Toggles our CSS for the given tab id
+function ToggleCSS(aID) {
+  if (!HasCSS(aID))
+    InsertCSS(aID);
+  else
+    RemoveCSS(aID);
 }
 
 /*
@@ -74,10 +80,7 @@ function HasCSS(aID) {
 
 // Fired if the checkbox in context menu is clicked.
 function ContextMenuClicked(aInfo, aTab) {
-  if (!HasCSS(aTab.id))
-    InsertCSS(aTab.id);
-  else
-    RemoveCSS(aTab.id);
+  ToggleCSS(aTab.id);
 }
 
 // Fired if tab is updated (page reload or link click). CSS is not reapplied
@@ -88,10 +91,20 @@ function TabUpdated(aID, aChangeInfo, aTab) {
 }
 
 // Fired if a new tab is activated.
-function TabActivated(aActiveInfo) {
+async function TabActivated(aActiveInfo) {
+  await CheckForAutoDisable(aActiveInfo.tabId);
   browser.contextMenus.update("toggle-colors-menu", {
-   checked: !HasCSS(aActiveInfo.tabId)
+    checked: !HasCSS(aActiveInfo.tabId)
   });
+}
+
+// Checks if the given tab still is not registered in our "database"
+// If so, and "auto-disable" is enabled, apply our CSS to this tab.
+async function CheckForAutoDisable(aID) {
+  const prefs = await browser.storage.local.get("auto_disable");
+  const autodisable = prefs.auto_disable || false;
+  if (HasCSS(aID) === undefined && autodisable)
+    await InsertCSS(aID);
 }
 
 /*
