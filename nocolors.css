@@ -1,11 +1,12 @@
-* {
-  color: $TEXTCOLOR !important;
+body {
   background: $BACKGROUNDCOLOR !important;
 }
-a, a * {
-  color: $LINKCOLOR !important;
+
+* {
+  color: $TEXTCOLOR !important;
+  background: none !important;
 }
 
-img, p {
-  background: none !important;
+a, a * {
+  color: $LINKCOLOR !important;
 }
