@@ -9,9 +9,12 @@ async function ColorChanged(e) {
 }
 
 async function CheckboxChanged(e) {
-  await browser.storage.local.set({
-    auto_disable: e.target.checked
-  });
+  if (e.target.id.match(/([a-z_]+)_checkbox/)) {
+    let pref = RegExp.$1;
+    let params = {};
+    params[pref] = e.target.checked;
+    await browser.storage.local.set(params);
+  }
 }
 
 function init() {
@@ -31,6 +34,7 @@ function init() {
     chooser.addEventListener("change", ColorChanged);
   });
   document.querySelector("#auto_disable_checkbox").addEventListener("change", CheckboxChanged);
+  document.querySelector("#show_button_checkbox").addEventListener("change", CheckboxChanged);
 }
 
 function loadOptions() {
@@ -40,6 +44,7 @@ function loadOptions() {
     let link = result.link_color || "#0000EE";
     let visited = result.link_color || "#551A8B";
     let autodisable = result.auto_disable || false;
+    let showbutton = result.show_button || false;
 
     document.querySelector("#background_color_chooser").value = background;
     document.querySelector("#text_color_chooser").value = text;
@@ -47,6 +52,7 @@ function loadOptions() {
     document.querySelector("#visited_color_chooser").value = visited;
 
     document.querySelector("#auto_disable_checkbox").checked = autodisable;
+    document.querySelector("#show_button_checkbox").checked = showbutton;
   });
 }
 

@@ -47,18 +47,23 @@ async function InsertCSS(aID) {
     code: css
   });
   gTabHasCSS[aID] = css;
+
+  await UpdateUI(aID);
 }
 
 // Function to remove our CSS from the given tab.
-function RemoveCSS(aID) {
+async function RemoveCSS(aID) {
   if (!gTabHasCSS[aID])
     return;
-  browser.tabs.removeCSS(aID, {
+
+  await browser.tabs.removeCSS(aID, {
     allFrames: true,
     cssOrigin: "user",
     code: gTabHasCSS[aID]
   });
   gTabHasCSS[aID] = false;
+
+  await UpdateUI(aID);
 }
 
 // Returns true if the passed tab has our CSS aplied. False otherwise.
@@ -83,19 +88,25 @@ function ContextMenuClicked(aInfo, aTab) {
   ToggleCSS(aTab.id);
 }
 
+// Fired if the page action is clicked.
+function PageActionClicked(aTab) {
+  ToggleCSS(aTab.id);
+}
+
 // Fired if tab is updated (page reload or link click). CSS is not reapplied
 // in this case. As we want the CSS to stay, reload it.
-function TabUpdated(aID, aChangeInfo, aTab) {
+async function TabUpdated(aID, aChangeInfo, aTab) {
   if (HasCSS(aTab.id))
-    InsertCSS(aTab.id);
+    await InsertCSS(aTab.id);
+  await CheckForAutoDisable(aTab.id);
+  await CheckForPageAction(aTab.id);
 }
 
 // Fired if a new tab is activated.
 async function TabActivated(aActiveInfo) {
   await CheckForAutoDisable(aActiveInfo.tabId);
-  browser.contextMenus.update("toggle-colors-menu", {
-    checked: !HasCSS(aActiveInfo.tabId)
-  });
+  await CheckForPageAction(aActiveInfo.tabId);
+  await UpdateUI(aActiveInfo.tabId);
 }
 
 // Checks if the given tab still is not registered in our "database"
@@ -107,20 +118,47 @@ async function CheckForAutoDisable(aID) {
     await InsertCSS(aID);
 }
 
+// Shows or hides the page action for the given tab based on settings.
+async function CheckForPageAction(aID) {
+  const prefs = await browser.storage.local.get("show_button");
+  const showbutton = prefs.show_button || false;
+  if (showbutton)
+    await browser.pageAction.show(aID);
+  else
+    await browser.pageAction.hide(aID);
+}
+
+// Updates user interface based on setting for the given tab id.
+async function UpdateUI(aID) {
+  let title = browser.i18n.getMessage("labelDisableWebsiteColors");
+  let icon = "icons/colors_on.svg";
+  if (HasCSS(aID)) {
+    title = browser.i18n.getMessage("labelEnableWebsiteColors");
+    icon = "icons/colors_off.svg";
+  }
+  await browser.contextMenus.update("toggle-colors-menu", {
+    title: title
+  });
+  await browser.pageAction.setIcon({path: icon, tabId: aID});
+  await browser.pageAction.setTitle({title: title, tabId: aID});
+}
+
 /*
  * Initialization
  */
 
 // Register event listeners
 browser.contextMenus.onClicked.addListener(ContextMenuClicked);
+browser.pageAction.onClicked.addListener(PageActionClicked);
 browser.tabs.onUpdated.addListener(TabUpdated);
 browser.tabs.onActivated.addListener(TabActivated);
+browser.tabs.query({active: true, currentWindow: true}).then((aTabs) => {
+  TabActivated({tabId: aTabs[0].id});
+});
 
 // Create our context menu
 browser.contextMenus.create({
   id: "toggle-colors-menu",
-  type: "checkbox",
-  title: browser.i18n.getMessage("contextMenuWebsiteColors"),
-  contexts: ["page"],
-  checked: true
+  title: browser.i18n.getMessage("labelDisableWebsiteColors"),
+  contexts: ["page"]
 });

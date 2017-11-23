@@ -4,8 +4,12 @@
     "description": "Description of the extension."
   },
 
-  "contextMenuWebsiteColors": {
-    "message": "Website colors",
-    "description": "Label of the context menu"
+  "labelDisableWebsiteColors": {
+    "message": "Disable website colors",
+    "description": "Info label for context menu and page action"
+  },
+  "labelEnableWebsiteColors": {
+    "message": "Enable website colors",
+    "description": "Info label for context menu and page action"
   }
 }

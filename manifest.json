@@ -12,11 +12,25 @@
     }
   },
 
+  "icons": {
+    "24": "icons/colors_on.svg",
+    "32": "icons/colors_on.svg",
+    "50": "icons/colors_on.svg"
+  },
+
   "homepage_url": "https://github.com/M-Reimer/togglewebsitecolors",
   "author": "Manuel Reimer",
 
   "background": {
     "scripts": ["background.js"]
+  },
+
+  "page_action": {
+    "default_icon": {
+      "19": "icons/colors_on.svg",
+      "38": "icons/colors_on.svg"
+    },
+    "default_title": "Toggle Website Colors"
   },
 
   "options_ui": {
