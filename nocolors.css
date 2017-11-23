@@ -10,3 +10,7 @@ body {
 a, a * {
   color: $LINKCOLOR !important;
 }
+
+a:visited, a:visited * {
+  color: $VISITEDCOLOR !important;
+}
