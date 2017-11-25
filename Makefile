@@ -8,7 +8,7 @@ FILES = manifest.json \
         options.html \
         options.js \
         nocolors.css \
-        $(wildcard _locales/*/message.json) \
+        $(wildcard _locales/*/messages.json) \
         $(wildcard icons/*.svg)
 
 togglewebsitecolors-trunk.xpi: $(FILES)
