@@ -18,14 +18,18 @@ async function CheckboxChanged(e) {
 }
 
 function init() {
-  /*
-  document.querySelector("#imageformat_headline").textContent = browser.i18n.getMessage("imageformat_headline_label");
-  document.querySelector("#region_headline").textContent = browser.i18n.getMessage("region_headline_label");
-  document.querySelector("#format_manual_label").textContent = browser.i18n.getMessage("select_manually_label");
-  document.querySelector("#region_manual_label").textContent = browser.i18n.getMessage("select_manually_label");
-  document.querySelector("#region_full_label").textContent = browser.i18n.getMessage("fullpage");
-  document.querySelector("#region_viewport_label").textContent = browser.i18n.getMessage("viewport");
-  */
+  [
+    "show_button_label",
+    "auto_disable_label",
+    "textcolors_headline",
+    "text_color_label",
+    "background_color_label",
+    "linkcolors_headline",
+    "link_color_label",
+    "visited_color_label"
+  ].forEach((id) => {
+    document.querySelector("#" + id).textContent = browser.i18n.getMessage(id);
+  });
 
   loadOptions();
 

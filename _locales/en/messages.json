@@ -11,5 +11,38 @@
   "labelEnableWebsiteColors": {
     "message": "Enable website colors",
     "description": "Info label for context menu and page action"
+  },
+
+  "show_button_label": {
+    "message": "Show toolbar button in address bar",
+    "description": "Label for toolbar button toggle in options"
+  },
+  "auto_disable_label": {
+    "message": "Auto-Disable colors for new tabs",
+    "description": "Label for auto-disable checkbox in options"
+  },
+  "textcolors_headline": {
+    "message": "Text and background",
+    "description": "Label for text and background headline in options"
+  },
+  "text_color_label": {
+    "message": "Text",
+    "description": "Label for text color chooser in options"
+  },
+  "background_color_label": {
+    "message": "Background",
+    "description": "Label for background color chooser in options"
+  },
+  "linkcolors_headline": {
+    "message": "Link colors",
+    "description": "Label for link colors headline in options"
+  },
+  "link_color_label": {
+    "message": "Unvisited links",
+    "description": "Label for unvisited link color chooser in options"
+  },
+  "visited_color_label": {
+    "message": "Visited links",
+    "description": "Label for visited link color chooser in options"
   }
 }
