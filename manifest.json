@@ -30,7 +30,8 @@
       "19": "icons/colors_on.svg",
       "38": "icons/colors_on.svg"
     },
-    "default_title": "Toggle Website Colors"
+    "default_title": "Toggle Website Colors",
+    "browser_style": true
   },
 
   "options_ui": {
