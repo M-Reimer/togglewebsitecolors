@@ -3,12 +3,16 @@
 # Makefile for Toggle Website Colors
 #
 
-.PHONY: xpi
+FILES = manifest.json \
+        background.js \
+        options.html \
+        options.js \
+        nocolors.css \
+        $(wildcard _locales/*/message.json) \
+        $(wildcard icons/*.svg)
 
-xpi: clean
-	zip -r9 togglewebsitecolors-trunk.xpi manifest.json \
-                               _locales \
-                               background.js \
-                               nocolors.css
+togglewebsitecolors-trunk.xpi: $(FILES)
+	@zip -9 - $^ > $@
+
 clean:
 	rm -f togglewebsitecolors-trunk.xpi
