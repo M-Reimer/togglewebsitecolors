@@ -34,7 +34,7 @@ async function InsertCSS(aID) {
   const background = prefs.background_color || "#FFFFFF";
   const text = prefs.text_color || "#000000";
   const link = prefs.link_color || "#0000EE";
-  const visited = prefs.link_color || "#551A8B";
+  const visited = prefs.visited_color || "#551A8B";
 
   css = css.replace(/\$TEXTCOLOR/g, text);
   css = css.replace(/\$BACKGROUNDCOLOR/g, background);

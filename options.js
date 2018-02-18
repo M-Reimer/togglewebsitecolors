@@ -43,12 +43,12 @@ function init() {
 
 function loadOptions() {
   browser.storage.local.get().then((result) => {
-    let background = result.background_color || "#FFFFFF";
-    let text = result.text_color || "#000000";
-    let link = result.link_color || "#0000EE";
-    let visited = result.link_color || "#551A8B";
-    let autodisable = result.auto_disable || false;
-    let showbutton = result.show_button || false;
+    const background = result.background_color || "#FFFFFF";
+    const text = result.text_color || "#000000";
+    const link = result.link_color || "#0000EE";
+    const visited = result.visited_color || "#551A8B";
+    const autodisable = result.auto_disable || false;
+    const showbutton = result.show_button || false;
 
     document.querySelector("#background_color_chooser").value = background;
     document.querySelector("#text_color_chooser").value = text;
