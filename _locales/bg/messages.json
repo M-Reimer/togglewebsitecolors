@@ -1,0 +1,54 @@
+{
+    "labelDisableWebsiteColors": {
+        "message": "Изключи цветовете на страницата",
+        "description": "Info label for context menu and page action",
+        "hash": "b3209516c7c9b55be34116b7adb641fa"
+    },
+    "labelEnableWebsiteColors": {
+        "message": "Включи цветовете на страницата",
+        "description": "Info label for context menu and page action",
+        "hash": "f65b331b45fd3c660c6b66bac0f361d3"
+    },
+    "show_button_label": {
+        "message": "Покажи бутон в адресната лента",
+        "description": "Label for toolbar button toggle in options",
+        "hash": "142ece09cee411b759d9c35d9cb97e04"
+    },
+    "auto_disable_label": {
+        "message": "Автоматично изключвай цветовете на нови радели",
+        "description": "Label for auto-disable checkbox in options",
+        "hash": "4c38ad47e19f22c1c5877491940dc3b0"
+    },
+    "textcolors_headline": {
+        "message": "Текст и фон",
+        "description": "Label for text and background headline in options",
+        "hash": "18ea0d33784c208719a5cf3d3a73ab7d"
+    },
+    "text_color_label": {
+        "message": "Текст",
+        "description": "Label for text color chooser in options",
+        "hash": "21708a79db57e36eeca9adb365e58455"
+    },
+    "background_color_label": {
+        "message": "Фон",
+        "description": "Label for background color chooser in options",
+        "hash": "b8554322854b2a2145dae6b277fd0364"
+    },
+    "linkcolors_headline": {
+        "message": "Цвятове на връзките",
+        "description": "Label for link colors headline in options",
+        "hash": "45823a18b01363b54c9df67c0fcac67a"
+    },
+    "link_color_label": {
+        "message": "Не посетени връзки",
+        "description": "Label for unvisited link color chooser in options",
+        "hash": "8c65f49a2b749e026c7741be76f626c4"
+    },
+    "visited_color_label": {
+        "message": "Посетени връзки",
+        "description": "Label for visited link color chooser in options",
+        "hash": "5b90f9fd257ee752ed793483b77104a3"
+    },
+
+    "__WET_LOCALE__": { "message": "bg" }
+}
