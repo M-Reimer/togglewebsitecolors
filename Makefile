@@ -11,8 +11,20 @@ FILES = manifest.json \
         $(wildcard _locales/*/messages.json) \
         $(wildcard icons/*.svg)
 
-togglewebsitecolors-trunk.xpi: $(FILES)
+ADDON = togglewebsitecolors
+
+VERSION = $(shell sed -n  's/^  "version": "\([^"]\+\).*/\1/p' manifest.json)
+
+trunk: $(ADDON)-trunk.xpi
+
+release: $(ADDON)-$(VERSION).xpi
+
+%.xpi: $(FILES) icons/$(ADDON)-light.svg
 	@zip -9 - $^ > $@
 
 clean:
-	rm -f togglewebsitecolors-trunk.xpi
+	rm -f $(ADDON)-*.xpi
+
+# Starts local debug session
+run:
+	web-ext run --bc
