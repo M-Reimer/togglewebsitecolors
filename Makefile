@@ -19,7 +19,7 @@ trunk: $(ADDON)-trunk.xpi
 
 release: $(ADDON)-$(VERSION).xpi
 
-%.xpi: $(FILES) icons/$(ADDON)-light.svg
+%.xpi: $(FILES)
 	@zip -9 - $^ > $@
 
 clean:
