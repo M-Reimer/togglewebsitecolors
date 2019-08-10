@@ -19,7 +19,6 @@ async function CheckboxChanged(e) {
 
 function init() {
   [
-    "show_button_label",
     "auto_disable_label",
     "textcolors_headline",
     "text_color_label",
@@ -38,7 +37,6 @@ function init() {
     chooser.addEventListener("change", ColorChanged);
   });
   document.querySelector("#auto_disable_checkbox").addEventListener("change", CheckboxChanged);
-  document.querySelector("#show_button_checkbox").addEventListener("change", CheckboxChanged);
 }
 
 function loadOptions() {

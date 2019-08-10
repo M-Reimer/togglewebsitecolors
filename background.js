@@ -99,13 +99,11 @@ async function TabUpdated(aID, aChangeInfo, aTab) {
   if (HasCSS(aTab.id))
     await InsertCSS(aTab.id);
   await CheckForAutoDisable(aTab.id);
-  await CheckForPageAction(aTab.id);
 }
 
 // Fired if a new tab is activated.
 async function TabActivated(aActiveInfo) {
   await CheckForAutoDisable(aActiveInfo.tabId);
-  await CheckForPageAction(aActiveInfo.tabId);
   await UpdateUI(aActiveInfo.tabId);
 }
 
@@ -116,16 +114,6 @@ async function CheckForAutoDisable(aID) {
   const autodisable = prefs.auto_disable || false;
   if (HasCSS(aID) === undefined && autodisable)
     await InsertCSS(aID);
-}
-
-// Shows or hides the page action for the given tab based on settings.
-async function CheckForPageAction(aID) {
-  const prefs = await browser.storage.local.get("show_button");
-  const showbutton = prefs.show_button || false;
-  if (showbutton)
-    await browser.pageAction.show(aID);
-  else
-    await browser.pageAction.hide(aID);
 }
 
 // Updates user interface based on setting for the given tab id.
@@ -141,6 +129,7 @@ async function UpdateUI(aID) {
   });
   await browser.pageAction.setIcon({path: icon, tabId: aID});
   await browser.pageAction.setTitle({title: title, tabId: aID});
+  await browser.pageAction.show(aID);
 }
 
 /*

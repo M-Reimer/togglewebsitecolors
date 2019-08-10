@@ -13,10 +13,6 @@
     "description": "Info label for context menu and page action"
   },
 
-  "show_button_label": {
-    "message": "Show toolbar button in address bar",
-    "description": "Label for toolbar button toggle in options"
-  },
   "auto_disable_label": {
     "message": "Auto-Disable colors for new tabs",
     "description": "Label for auto-disable checkbox in options"

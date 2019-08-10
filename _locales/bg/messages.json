@@ -9,11 +9,6 @@
         "description": "Info label for context menu and page action",
         "hash": "f65b331b45fd3c660c6b66bac0f361d3"
     },
-    "show_button_label": {
-        "message": "Покажи бутон в адресната лента",
-        "description": "Label for toolbar button toggle in options",
-        "hash": "142ece09cee411b759d9c35d9cb97e04"
-    },
     "auto_disable_label": {
         "message": "Автоматично изключвай цветовете на нови радели",
         "description": "Label for auto-disable checkbox in options",
