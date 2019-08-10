@@ -26,6 +26,7 @@ var gTabHasCSS = {};
 // Function to apply our CSS to the given tab.
 async function InsertCSS(aID) {
   const xhr = new XMLHttpRequest();
+  xhr.overrideMimeType("text/css");
   xhr.open("GET", chrome.extension.getURL('/nocolors.css'), false);
   xhr.send();
   let css = xhr.responseText
@@ -99,6 +100,7 @@ async function TabUpdated(aID, aChangeInfo, aTab) {
   if (HasCSS(aTab.id))
     await InsertCSS(aTab.id);
   await CheckForAutoDisable(aTab.id);
+  await UpdateUI(aTab.id);
 }
 
 // Fired if a new tab is activated.
