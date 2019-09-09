@@ -27,4 +27,4 @@ clean:
 
 # Starts local debug session
 run:
-	web-ext run --bc
+	web-ext run --pref=devtools.browserconsole.contentMessages=true --bc
