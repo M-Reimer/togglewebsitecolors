@@ -50,7 +50,6 @@ function loadOptions() {
     const link = result.link_color || "#0000EE";
     const visited = result.visited_color || "#551A8B";
     const autodisable = result.auto_disable || false;
-    const showbutton = result.show_button || false;
 
     document.querySelector("#background_color_chooser").value = background;
     document.querySelector("#text_color_chooser").value = text;
@@ -58,7 +57,6 @@ function loadOptions() {
     document.querySelector("#visited_color_chooser").value = visited;
 
     document.querySelector("#auto_disable_checkbox").checked = autodisable;
-    document.querySelector("#show_button_checkbox").checked = showbutton;
   });
 }
 
