@@ -25,7 +25,8 @@ function init() {
     "background_color_label",
     "linkcolors_headline",
     "link_color_label",
-    "visited_color_label"
+    "visited_color_label",
+    "reset_shortcuts_button"
   ].forEach((id) => {
     document.querySelector("#" + id).textContent = browser.i18n.getMessage(id);
   });
@@ -37,6 +38,9 @@ function init() {
     chooser.addEventListener("change", ColorChanged);
   });
   document.querySelector("#auto_disable_checkbox").addEventListener("change", CheckboxChanged);
+
+  // Init shortcut reset button
+  ResetShortcuts.Init();
 }
 
 function loadOptions() {

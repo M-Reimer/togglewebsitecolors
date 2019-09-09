@@ -39,6 +39,11 @@
     "browser_style": true
   },
 
+  "commands": {
+    "_execute_page_action": {
+    }
+  },
+
   "permissions": [
     "activeTab",
     "tabs",

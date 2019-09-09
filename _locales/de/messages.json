@@ -17,6 +17,11 @@
     "message": "Farben für neue Tabs automatisch deaktivieren",
     "description": "Label for auto-disable checkbox in options"
   },
+  "reset_shortcuts_button": {
+    "message": "Tastenkombination zurücksetzen",
+    "description": "Label for the keyboard shortcut reset button"
+  },
+
   "textcolors_headline": {
     "message": "Text und Hintergrund",
     "description": "Label for text and background headline in options"
@@ -29,6 +34,7 @@
     "message": "Hintergrund",
     "description": "Label for background color chooser in options"
   },
+
   "linkcolors_headline": {
     "message": "Linkfarben",
     "description": "Label for link colors headline in options"

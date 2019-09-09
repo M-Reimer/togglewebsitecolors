@@ -7,12 +7,16 @@
     <form>
       <input type="checkbox" id="auto_disable_checkbox"/>
       <label for="auto_disable_checkbox" id="auto_disable_label">Auto-Disable colors for new tabs</label>
+      <br/>
+      <button id="reset_shortcuts_button" style="margin-top: 1em;">Reset keyboard shortcut</button>
+
       <h1 id="textcolors_headline">Text and background</h1>
       <input type="color" id="text_color_chooser"/>
       <label for="text_color_chooser" id="text_color_label">Text</label>
       <br/>
       <input type="color" id="background_color_chooser"/>
       <label for="background_color_chooser" id="background_color_label">Background</label>
+
       <h1 id="linkcolors_headline">Link colors</h1>
       <input type="color" id="link_color_chooser"/>
       <label for="link_color_chooser" id="link_color_label">Unvisited links</label>
@@ -20,6 +24,7 @@
       <input type="color" id="visited_color_chooser"/>
       <label for="visited_color_chooser" id="visited_color_label">Visited links</label>
     </form>
+    <script src="resetshortcuts.js"></script>
     <script src="options.js"></script>
   </body>
 </html>
