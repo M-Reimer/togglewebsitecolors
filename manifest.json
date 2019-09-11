@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toggle Website Colors",
-  "version": "2.2.0",
+  "version": "2.3.0",
 
   "description": "__MSG_extensionDescription__",
 
