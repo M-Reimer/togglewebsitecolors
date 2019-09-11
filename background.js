@@ -1,6 +1,6 @@
 /*
     Firefox addon "Toggle Website Colors"
-    Copyright (C) 2017  Manuel Reimer <manuel.reimer@gmx.de>
+    Copyright (C) 2019  Manuel Reimer <manuel.reimer@gmx.de>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -126,11 +126,13 @@ async function UpdateUI(aID) {
     title = browser.i18n.getMessage("labelEnableWebsiteColors");
     icon = "icons/colors_off.svg";
   }
-  await browser.contextMenus.update("toggle-colors-menu", {
-    title: title
-  });
-  await browser.pageAction.setIcon({path: icon, tabId: aID});
-  await browser.pageAction.setTitle({title: title, tabId: aID});
+
+  if (browser.contextMenus !== undefined) // If not on Android
+    await browser.contextMenus.update("toggle-colors-menu", {title: title});
+  if (browser.pageAction.setIcon !== undefined) // If not on Android
+    await browser.pageAction.setIcon({path: icon, tabId: aID});
+  if (browser.pageAction.setTitle !== undefined) // If not on Android
+    await browser.pageAction.setTitle({title: title, tabId: aID});
   await browser.pageAction.show(aID);
 }
 
@@ -139,7 +141,6 @@ async function UpdateUI(aID) {
  */
 
 // Register event listeners
-browser.contextMenus.onClicked.addListener(ContextMenuClicked);
 browser.pageAction.onClicked.addListener(PageActionClicked);
 browser.tabs.onUpdated.addListener(TabUpdated);
 browser.tabs.onActivated.addListener(TabActivated);
@@ -148,8 +149,12 @@ browser.tabs.query({active: true, currentWindow: true}).then((aTabs) => {
 });
 
 // Create our context menu
-browser.contextMenus.create({
-  id: "toggle-colors-menu",
-  title: browser.i18n.getMessage("labelDisableWebsiteColors"),
-  contexts: ["page"]
-});
+if (browser.contextMenus !== undefined) { // If not on Android
+  browser.contextMenus.onClicked.addListener(ContextMenuClicked);
+
+  browser.contextMenus.create({
+    id: "toggle-colors-menu",
+    title: browser.i18n.getMessage("labelDisableWebsiteColors"),
+    contexts: ["page"]
+  });
+}
