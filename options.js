@@ -4,7 +4,7 @@ async function ColorChanged(e) {
     let pref = RegExp.$1;
     let params = {};
     params[pref] = e.target.value;
-    await browser.storage.local.set(params);
+    await Storage.set(params);
   }
 }
 
@@ -13,7 +13,7 @@ async function CheckboxChanged(e) {
     let pref = RegExp.$1;
     let params = {};
     params[pref] = e.target.checked;
-    await browser.storage.local.set(params);
+    await Storage.set(params);
   }
 }
 
@@ -41,19 +41,13 @@ function init() {
 }
 
 function loadOptions() {
-  browser.storage.local.get().then((result) => {
-    const background = result.background_color || "#FFFFFF";
-    const text = result.text_color || "#000000";
-    const link = result.link_color || "#0000EE";
-    const visited = result.visited_color || "#551A8B";
-    const autodisable = result.auto_disable || false;
+  Storage.get().then((prefs) => {
+    document.querySelector("#background_color_chooser").value = prefs.background_color;
+    document.querySelector("#text_color_chooser").value = prefs.text_color;
+    document.querySelector("#link_color_chooser").value = prefs.link_color;
+    document.querySelector("#visited_color_chooser").value = prefs.visited_color;
 
-    document.querySelector("#background_color_chooser").value = background;
-    document.querySelector("#text_color_chooser").value = text;
-    document.querySelector("#link_color_chooser").value = link;
-    document.querySelector("#visited_color_chooser").value = visited;
-
-    document.querySelector("#auto_disable_checkbox").checked = autodisable;
+    document.querySelector("#auto_disable_checkbox").checked = prefs.auto_disable;
   });
 }
 

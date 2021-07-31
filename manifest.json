@@ -22,7 +22,7 @@
   "author": "Manuel Reimer",
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["storage.js", "background.js"]
   },
 
   "page_action": {

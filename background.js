@@ -27,16 +27,11 @@ var gTabHasCSS = {};
 async function InsertCSS(aID) {
   let css = await (await fetch(browser.runtime.getURL('/nocolors.css'))).text();
 
-  const prefs = await browser.storage.local.get();
-  const background = prefs.background_color || "#FFFFFF";
-  const text = prefs.text_color || "#000000";
-  const link = prefs.link_color || "#0000EE";
-  const visited = prefs.visited_color || "#551A8B";
-
-  css = css.replace(/\$TEXTCOLOR/g, text);
-  css = css.replace(/\$BACKGROUNDCOLOR/g, background);
-  css = css.replace(/\$LINKCOLOR/g, link);
-  css = css.replace(/\$VISITEDCOLOR/g, visited);
+  const prefs = await Storage.get();
+  css = css.replace(/\$TEXTCOLOR/g, prefs.text_color);
+  css = css.replace(/\$BACKGROUNDCOLOR/g, prefs.background_color);
+  css = css.replace(/\$LINKCOLOR/g, prefs.link_color);
+  css = css.replace(/\$VISITEDCOLOR/g, prefs.visited_color);
 
   await browser.tabs.insertCSS(aID, {
     allFrames: true,
@@ -108,9 +103,8 @@ async function TabActivated(aActiveInfo) {
 // Checks if the given tab still is not registered in our "database"
 // If so, and "auto-disable" is enabled, apply our CSS to this tab.
 async function CheckForAutoDisable(aID) {
-  const prefs = await browser.storage.local.get("auto_disable");
-  const autodisable = prefs.auto_disable || false;
-  if (HasCSS(aID) === undefined && autodisable)
+  const prefs = await Storage.get();
+  if (HasCSS(aID) === undefined && prefs.auto_disable)
     await InsertCSS(aID);
 }
 

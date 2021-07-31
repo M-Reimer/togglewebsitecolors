@@ -4,6 +4,7 @@
 #
 
 FILES = manifest.json \
+        storage.js \
         background.js \
         options.html \
         options.js \
