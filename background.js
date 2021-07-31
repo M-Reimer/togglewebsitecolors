@@ -1,6 +1,6 @@
 /*
     Firefox addon "Toggle Website Colors"
-    Copyright (C) 2019  Manuel Reimer <manuel.reimer@gmx.de>
+    Copyright (C) 2021  Manuel Reimer <manuel.reimer@gmx.de>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,11 +25,7 @@ var gTabHasCSS = {};
 
 // Function to apply our CSS to the given tab.
 async function InsertCSS(aID) {
-  const xhr = new XMLHttpRequest();
-  xhr.overrideMimeType("text/css");
-  xhr.open("GET", chrome.extension.getURL('/nocolors.css'), false);
-  xhr.send();
-  let css = xhr.responseText
+  let css = await (await fetch(browser.runtime.getURL('/nocolors.css'))).text();
 
   const prefs = await browser.storage.local.get();
   const background = prefs.background_color || "#FFFFFF";

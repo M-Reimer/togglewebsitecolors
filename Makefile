@@ -7,7 +7,6 @@ FILES = manifest.json \
         background.js \
         options.html \
         options.js \
-        resetshortcuts.js \
         nocolors.css \
         $(wildcard _locales/*/messages.json) \
         $(wildcard icons/*.svg)
