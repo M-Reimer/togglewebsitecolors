@@ -19,6 +19,7 @@ async function CheckboxChanged(e) {
 
 function init() {
   [
+    "general_headline",
     "auto_disable_label",
     "textcolors_headline",
     "text_color_label",

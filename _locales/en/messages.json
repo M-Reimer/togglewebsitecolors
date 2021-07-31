@@ -13,13 +13,13 @@
     "description": "Info label for context menu and page action"
   },
 
+  "general_headline": {
+    "message": "General",
+    "description": "Headline for general options in options page"
+  },
   "auto_disable_label": {
     "message": "Auto-Disable colors for new tabs",
     "description": "Label for auto-disable checkbox in options"
-  },
-  "reset_shortcuts_button": {
-    "message": "Reset keyboard shortcut",
-    "description": "Label for the keyboard shortcut reset button"
   },
 
   "textcolors_headline": {
