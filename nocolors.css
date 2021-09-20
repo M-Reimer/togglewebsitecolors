@@ -1,10 +1,10 @@
 body {
-  background: $BACKGROUNDCOLOR !important;
+  background-color: $BACKGROUNDCOLOR !important;
 }
 
 * {
   color: $TEXTCOLOR !important;
-  background: none !important;
+  background-color: transparent !important;
 }
 
 a, a * {
